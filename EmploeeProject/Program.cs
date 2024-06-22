@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 string? Firstname = string.Empty;
 string Lastname = string.Empty;
-int retirementAge = 65;
+const int retirementAge = 65;
 int age = 0;
 DateOnly dob = new DateOnly();
 decimal salary = 0;
