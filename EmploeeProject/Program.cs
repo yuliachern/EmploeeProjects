@@ -5,6 +5,7 @@ string? Firstname = string.Empty;
 string Lastname = string.Empty;
 int retirementAge = 65;
 int age = 0;
+DateOnly dob = new DateOnly();
 decimal salary = 0;
 char gender = char.MinValue;
 bool working = false;
@@ -18,8 +19,13 @@ Firstname = Console.ReadLine();
 Console.WriteLine("Please, enter your Lastname");
 Lastname = Console.ReadLine();
 
+
+Console.WriteLine("Please, enter your date of birth (dd/mm/yyyy)");
+dob = DateOnly.ParseExact(Console.ReadLine, "dd/mm/yyyy", CultureInfo.InvariantCulture);
+
 Console.WriteLine("Please, enter your age");
-age = Convert.ToInt32(Console.ReadLine());
+
+age = DateTime.Now.Year - dob.Year;
 
 Console.WriteLine("Please, enter your selary");
 salary = Convert.ToDecimal(Console.ReadLine());
@@ -32,13 +38,15 @@ working = Convert.ToBoolean(Console.ReadLine());
 
 //Process the data
 int workingYearsRemaining1 = retirementAge - age;
+var estimatedRetirementDate = DateTime.Now.AddYears(workingYearsRemaining1);
 
 //Output the results to the user
 Console.WriteLine($"Full name {Firstname} {Lastname}");
 Console.WriteLine($"Age {age}");
 Console.WriteLine($"Your gender is : {gender}");
-Console.WriteLine($"Your salary is : {salary}");
+Console.WriteLine($"Your salary is : {salary.ToString("C")}");
 Console.WriteLine($"You are emploed : {working}");
+Console.WriteLine($"Estimated Retirement year: {estimatedRetirementDate.Year}");
 
 if (gender == 'm')
 {
